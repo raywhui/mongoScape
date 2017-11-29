@@ -14,7 +14,7 @@ $(document).on("click", "button", function(e) {
     // With that done, add the note information to the page
     .done(function(data) {
 			console.log('Comment Submitted');
-      // location.reload();
+      location.reload();
     });
 
   $(this).siblings('textarea').val(' ');
