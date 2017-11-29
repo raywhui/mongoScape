@@ -5,7 +5,9 @@ const request = require("request");
 const mongoose = require("mongoose");
 const cheerio = require("cheerio");
 
-const PORT = 3000;
+const port = process.env.PORT || 3000;
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/foxNewsScraper";
+
 
 const db = require("./models");
 const app = express();
@@ -22,7 +24,7 @@ app.use(express.static("public"));
 
 
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/foxNewsScraper", {
+mongoose.connect(MONGODB_URI, {
   useMongoClient: true
 });
 
@@ -83,6 +85,6 @@ const routes = require("./controllers/articles.js");
 app.use("/", routes);
 
 
-app.listen(PORT, function() {
-  console.log("App running on port " + PORT + "!");
+app.listen(port, function() {
+  console.log("App running on port " + port + "!");
 });
