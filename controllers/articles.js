@@ -7,6 +7,7 @@ const router = express.Router();
 router.get('/', function(req,res){
 	db.Article
 		.find({})
+		.populate("comments")
 		.then(function(dbArticle){
 
 			let controllerToIndex = {
@@ -22,6 +23,7 @@ router.get('/', function(req,res){
 router.get('/article', function(req,res){
 	db.Article
 		.find({})
+		.populate('comments')
 		.then(function(dbArticle){
 			res.json(dbArticle);
 		}).catch(function(err){
@@ -46,8 +48,6 @@ router.post("/article/:id", function(req, res) {
   db.Comments
     .create(req.body)
     .then(function(dbComment) {
-    	console.log(req.params.id)
-    	console.log(dbComment._id)
       // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note
       // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
       // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query

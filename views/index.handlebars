@@ -1,10 +1,13 @@
 <ul id="articles">
   {{#each articles}}
-    <a href="http://www.foxnews.com{{url}}"><ol>{{headline}}</ol></a>
+    <a href="http://www.foxnews.com{{url}}"><ol><h2>{{headline}}</h2></ol></a>
+    <br>
     <img src="{{image}}">
     <p><ol>{{summary}}</ol></p>
+    <br>
 ]
-
+		<h2>Best Comment:</h2>
+		<p>{{comments.comment}}</p>
     <form>
       <textarea data-id="{{_id}}" rows="4" cols="50" placeholder="Leave a comment for others to see!"></textarea>
       <button>Submit</button>
